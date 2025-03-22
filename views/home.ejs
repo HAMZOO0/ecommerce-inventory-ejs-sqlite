@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Our Store</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Orbitron', sans-serif; /* Futuristic font */
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a0a; /* Dark background */
+            color: #00ffcc; /* Neon green text */
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #1f1f1f; /* Darker navbar */
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: #00ffcc; /* Neon green */
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(to right, #1f1f1f, #0a0a0a);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #00ffcc; /* Neon green */
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.7); /* Glow effect */
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #00ffcc; /* Neon green */
+        }
+
+        .hero .btn {
+            margin-top: 1.5rem;
+            padding: 0.75rem 2rem;
+            background-color: #00ffcc; /* Neon green */
+            color: #0a0a0a; /* Dark text */
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hero .btn:hover {
+            background-color: #00cc99; /* Darker neon green */
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.9); /* Glow effect */
+        }
+
+        /* Featured Products Section */
+        .featured-products {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .featured-products h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #00ffcc; /* Neon green */
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.7); /* Glow effect */
+        }
+
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .product-card {
+            background-color: #1f1f1f; /* Darker card */
+            border-radius: 8px;
+            padding: 1.5rem;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.7); /* Glow effect */
+        }
+
+        .product-card img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .product-card h3 {
+            font-size: 1.5rem;
+            margin: 0 0 0.5rem;
+            color: #00ffcc; /* Neon green */
+        }
+
+        .product-card p {
+            font-size: 1.1rem;
+            color: #00ffcc; /* Neon green */
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #1f1f1f; /* Darker footer */
+            padding: 1rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .footer p {
+            margin: 0;
+            color: #00ffcc; /* Neon green */
+        }
+    </style>
+    <!-- Google Fonts: Orbitron (Futuristic Font) -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div>
+            <a href="/">Home</a>
+            <a href="/products">Products</a>
+        </div>
+        <div>
+            <% if (user) { %>
+          <div style="display: flex; align-items: center; gap: 10px;">
+              <img src="https://ui-avatars.com/api/?name=<%= user.username %>&background=random&color=fff" 
+             alt="Avatar" 
+             style="width: 40px; height: 40px; border-radius: 50%;">
+              <p style="display: inline; margin: 0;"><strong><%= user.username %></strong></p>
+              <a href="/logout" class="btn">Logout</a>
+              <% if (user.username === 'admin') { %>
+            <a href="/admin" class="btn">Admin Panel</a>
+              <% } %>
+          </div>
+            <% } else { %>
+          <a href="/login" class="btn">Login</a>
+          <a href="/register" class="btn">Register</a>
+            <% } %>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Welcome to Our Store</h1>
+        <p>Discover amazing products at great prices!</p>
+        <a href="/products" class="btn">Shop Now</a>
+    </div>
+
+    <!-- Featured Products Section -->
+    <div class="featured-products">
+        <h2>Featured Products</h2>
+        <div class="product-grid">
+            <% products.forEach(product => { %>
+                <div class="product-card">
+                    <img src="<%= product.image %>" alt="<%= product.name %>">
+                    <h3><%= product.name %></h3>
+                    <p>$<%= product.price %></p>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2024 Hamza Sajid. All rights reserved.</p>
+    </div>
+</body>
+</html>
