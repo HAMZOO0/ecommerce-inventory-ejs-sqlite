@@ -24,7 +24,7 @@ app.set("views", path.resolve("./views"));
 
 app.use(bodyParser.urlencoded({ extended: true })); // ! 
 
-// ✅ Set up session middleware
+//  Set up session middleware
 app.use(
   session({
     secret: "123", // Change this to a strong secret key
@@ -33,7 +33,7 @@ app.use(
   })
 );
 
-// ✅ Middleware to pass user data to views
+//  Middleware to pass user data to views
 app.use((req, res, next) => {
   res.locals.user = req.session.user || null;
   next();
