@@ -89,6 +89,23 @@
             padding: 0.5rem 1rem;
             font-size: 0.9rem;
         }
+        .link {
+            font-size: 1.2rem;
+
+            margin-top: 1rem;
+            color: #00ffcc; /* Neon green */
+        }
+
+        .link a {
+            color: #00ffcc; /* Neon green */
+            text-decoration: none;
+            transition: text-shadow 0.3s ease;
+        }
+
+        .link a:hover {
+            text-decoration: underline;
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.7); /* Glow effect */
+        }
 
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -104,12 +121,30 @@
             .products-table {
                 font-size: 0.9rem; /* Smaller text for better fit */
             }
+            .link {
+            margin-top: 1rem;
+            color: #00ffcc; /* Neon green */
+        }
+
+        .link a {
+            color: #00ffcc; /* Neon green */
+            text-decoration: none;
+            transition: text-shadow 0.3s ease;
+        }
+
+        .link a:hover {
+            text-decoration: underline;
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.7); /* Glow effect */
+        }
         }
     </style>
     <!-- Google Fonts: Orbitron (Futuristic Font) -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
+<nav></nav>
 <body>
+    <p class="link"><a href="/">Home</a></p>
+
     <!-- Container -->
     <div class="container">
         <!-- Action Buttons -->
