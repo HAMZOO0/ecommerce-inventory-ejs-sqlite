@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Orbitron', sans-serif; /* Futuristic font */
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a0a; /* Dark background */
+            color: #00ffcc; /* Neon green text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Form Container */
+        .form-container {
+            background-color: #1f1f1f; /* Darker container */
+            padding: 2rem;
+            border-radius: 8px;
+            border: 2px solid #00ffcc; /* Neon border */
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.5); /* Glow effect */
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .form-container h1 {
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            color: #00ffcc; /* Neon green */
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.7); /* Glow effect */
+        }
+
+        /* Form Inputs */
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #00ffcc; /* Neon green */
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #262626; /* Dark input background */
+            border: 1px solid #00ffcc; /* Neon border */
+            border-radius: 4px;
+            font-size: 1rem;
+            color: #00ffcc; /* Neon green text */
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #00ffcc;
+            box-shadow: 0 0 10px rgba(0, 255, 204, 0.7); /* Glow effect */
+        }
+
+        /* Button */
+        .btn {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #00ffcc; /* Neon green */
+            color: #0a0a0a; /* Dark text */
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #00cc99; /* Darker neon green */
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.9); /* Glow effect */
+        }
+
+        /* Link */
+        .link {
+            margin-top: 1rem;
+            color: #00ffcc; /* Neon green */
+        }
+
+        .link a {
+            color: #00ffcc; /* Neon green */
+            text-decoration: none;
+            transition: text-shadow 0.3s ease;
+        }
+
+        .link a:hover {
+            text-decoration: underline;
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.7); /* Glow effect */
+        }
+    </style>
+    <!-- Google Fonts: Orbitron (Futuristic Font) -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Edit Product</h1>
+        <form action="/edit-product/<%= product.id %>" method="POST">
+            <div class="form-group">
+                <label for="name">Product Name</label>
+                <input type="text" id="name" name="name" value="<%= product.name %>" required>
+            </div>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input type="number" id="price" name="price" step="0.01" value="<%= product.price %>" required>
+            </div>
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select id="category" name="category" required>
+                    <option value="Electronics" <%= product.category === 'Electronics' ? 'selected' : '' %>>Electronics</option>
+                    <option value="Clothing" <%= product.category === 'Clothing' ? 'selected' : '' %>>Clothing</option>
+                    <option value="Home & Kitchen" <%= product.category === 'Home & Kitchen' ? 'selected' : '' %>>Home & Kitchen</option>
+                    <option value="Other" <%= product.category === 'Other' ? 'selected' : '' %>>Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="stock">Stock</label>
+                <input type="number" id="stock" name="stock" value="<%= product.stock %>" required>
+            </div>
+            <div class="form-group">
+                <label for="image_url">Image URL</label>
+                <input type="url" id="image_url" name="image_url" value="<%= product.image_url %>" required>
+            </div>
+            <button type="submit" class="btn">Update Product</button>
+        </form>
+        <p class="link"><a href="/admin-panel">Back to Admin Panel</a></p>
+    </div>
+</body>
+</html>

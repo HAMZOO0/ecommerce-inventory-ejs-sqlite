@@ -87,7 +87,7 @@ router.get("/edit-product/:id", (req, res) => {
   );
 });
 
-// Handle Update Product
+// Handle Update Product - foam 
 router.post("/edit-product/:id", (req, res) => {
   const { name, price, category, stock } = req.body;
   db.run(
