@@ -156,7 +156,7 @@
               <p style="display: inline; margin: 0;"><strong><%= user.username %></strong></p>
               <a href="/logout" class="btn">Logout</a>
               <% if (user.username === 'admin') { %>
-            <a href="/admin" class="btn">Admin Panel</a>
+            <a href="/admin-panel" class="btn">Admin Panel</a>
               <% } %>
           </div>
             <% } else { %>
@@ -179,7 +179,7 @@
         <div class="product-grid">
             <% products.forEach(product => { %>
                 <div class="product-card">
-                    <img src="<%= product.image %>" alt="<%= product.name %>">
+                    <img src="<%= product.image_url %>" alt="<%= product.name %>">
                     <h3><%= product.name %></h3>
                     <p>$<%= product.price %></p>
                 </div>

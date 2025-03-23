@@ -4,8 +4,9 @@ const session = require("express-session");
 const sqlite3 = require("sqlite3").verbose();
 const path = require("path");
 const authRoutes = require("./routes/auth");
- 
-// db coonection 
+const productRoutes = require("./routes/product");
+
+// db coonection
 const db = new sqlite3.Database(
   "./products.db",
   sqlite3.OPEN_READWRITE,
@@ -22,7 +23,7 @@ app.set("view engine", "ejs");
 // path for views(ejs)
 app.set("views", path.resolve("./views"));
 
-app.use(bodyParser.urlencoded({ extended: true })); // ! 
+app.use(bodyParser.urlencoded({ extended: true })); // !
 
 //  Set up session middleware
 app.use(
@@ -40,6 +41,13 @@ app.use((req, res, next) => {
 });
 
 app.use("/", authRoutes);
+app.use("/", productRoutes);
+
+app.get("/session", (req, res) => {
+  console.log(req.session);
+
+  res.send(`Session Data: ${req.session.user}`);
+});
 
 // Home Page (List Products)
 app.get("/", (req, res) => {
@@ -50,6 +58,12 @@ app.get("/", (req, res) => {
     if (err) return res.send("Error fetching products");
     res.render("home", { user: req.session.user, products });
   });
+});
+
+app.get("/admin-panel", (req, res) => {
+  if (!req.session.user || req.session.user.role !== "admin")
+    return res.redirect("/");
+  res.render("admin-panel");
 });
 
 // Start the server

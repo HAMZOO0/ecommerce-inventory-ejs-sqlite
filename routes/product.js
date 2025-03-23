@@ -1,16 +1,50 @@
 const express = require("express");
 const router = express.Router();
 const sqlite3 = require("sqlite3").verbose();
+require("dotenv").config();
+const axios = require("axios");
 
-const db = new sqlite3.Database("./database/products.db");
+// db coonection
+const db = new sqlite3.Database(
+  "./products.db",
+  sqlite3.OPEN_READWRITE,
+  (err) => {
+    if (err) {
+      console.error(err.message);
+    }
+  }
+);
 
-// Home Route (List Products)
-// router.get("/", (req, res) => {
-//   db.all("SELECT * FROM products", [], (err, products) => {
-//     res.render("home", { products, user: req.session.user });
-//   });
-// });
+const unsplashClient = axios.create({
+  // Set the base URL for all requests to the Unsplash API.
+  baseURL: "https://api.unsplash.com",
+  // Set the headers for all requests, including the Authorization header
+  // with the access token from environment variables.
+  headers: {
+    Authorization: `Client-ID ${process.env.ACCESS_TOKEN}`,
+  },
+});
 
+async function getPictureForProduct(productName) {
+  try {
+    // Fetch an image related to the product name
+    const response = await unsplashClient.get("/photos/random", {
+      params: {
+        query: productName, // Search query (e.g., "laptop", "phone", "shoes")
+        orientation: "squarish", // Ensures better display
+      },
+    });
+    return response.data.urls.regular; // Return the direct image URL
+  } catch (error) {
+    console.error(
+      "Error fetching image:",
+      error.response?.data || error.message
+    );
+    return null;
+  }
+}
+
+// ! it work like /admin/add-product
 // Add Product Page (Only for Admin)
 router.get("/add-product", (req, res) => {
   if (!req.session.user || req.session.user.role !== "admin")
@@ -19,11 +53,21 @@ router.get("/add-product", (req, res) => {
 });
 
 // Handle Add Product
-router.post("/add-product", (req, res) => {
-  const { name, price, category, stock } = req.body;
+router.post("/add-product", async (req, res) => {
+  let { name, price, category, stock, image_url } = req.body;
+  // If no image URL is provided, fetch one from Unsplash
+  if (!image_url) {
+    image_url = await getPictureForProduct(name);
+  }
   db.run(
-    "INSERT INTO products (name, price, category, stock) VALUES (?, ?, ?, ?)",
-    [name, price, category, stock],
+    "INSERT INTO products (name, price, category, stock ,image_url ) VALUES (?, ?, ?, ? , ?)",
+    [
+      name,
+      price,
+      category,
+      stock,
+      (image_url = await getPictureForProduct(name)),
+    ],
     () => {
       res.redirect("/");
     }
