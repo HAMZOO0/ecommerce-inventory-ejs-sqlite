@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Orbitron', sans-serif; /* Futuristic font */
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a0a; /* Dark background */
+            color: #00ffcc; /* Neon green text */
+        }
+
+        /* Container */
+        .container {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .product-card {
+            background-color: #1f1f1f; /* Darker card */
+            border-radius: 8px;
+            padding: 1.5rem;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.7); /* Glow effect */
+        }
+
+        .product-card img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .product-card h3 {
+            font-size: 1.5rem;
+            margin: 0 0 0.5rem;
+            color: #00ffcc; /* Neon green */
+        }
+
+        .product-card p {
+            font-size: 1.1rem;
+            color: #00ffcc; /* Neon green */
+        }
+
+        .product-card .btn {
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #00ffcc; /* Neon green */
+            color: #0a0a0a; /* Dark text */
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card .btn:hover {
+            background-color: #00cc99; /* Darker neon green */
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.9); /* Glow effect */
+        }
+
+       /* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Spreads items across */
+    align-items: center; /* Aligns items vertically */
+    padding: 1rem 2rem;
+    background-color: #1a1a1a; /* Dark navbar */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Navbar links */
+.navbar a {
+    color: #00ffcc; /* Neon green */
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin-right: 1.5rem;
+    transition: text-shadow 0.3s ease;
+}
+
+.navbar a:hover {
+    text-shadow: 0 0 10px rgba(0, 255, 204, 0.7); /* Glow effect */
+}
+
+/* Buttons inside navbar */
+.navbar .btn {
+    padding: 0.5rem 1rem;
+    background-color: #00ffcc;
+    color: #0a0a0a;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.navbar .btn:hover {
+    background-color: #00cc99;
+    box-shadow: 0 0 10px rgba(0, 255, 204, 0.7);
+}
+
+    </style>
+    <!-- Google Fonts: Orbitron (Futuristic Font) -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div>
+            <a href="/">Home</a>
+            <a href="/products">Products</a>
+        </div>
+        <div>
+            <% if (user) { %>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <img src="https://ui-avatars.com/api/?name=<%= user.username %>&background=random&color=fff" 
+                         alt="Avatar" 
+                         style="width: 40px; height: 40px; border-radius: 50%;">
+                    <p style="display: inline; margin: 0;"><strong><%= user.username %></strong></p>
+                    <a href="/logout" class="btn">Logout</a>
+                </div>
+            <% } else { %>
+                <a href="/login" class="btn">Login</a>
+                <a href="/register" class="btn">Register</a>
+            <% } %>
+        </div>
+    </div>
+
+    <!-- Container -->
+    <div class="container">
+        <h1>All Products</h1>
+        <div class="product-grid">
+            <% products.forEach(product => { %>
+                <div class="product-card">
+                    <img src="<%= product.image_url %>" alt="<%= product.name %>">
+                    <h3><%= product.name %></h3>
+                    <p><strong>Price:</strong> $<%= product.price %></p>
+                    <p><strong>Category:</strong> <%= product.category %></p>
+                    <p><strong>Stock:</strong> <%= product.stock %></p>
+                    <a href="/product/<%= product.id %>" class="btn">View Details</a>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</body>
+</html>

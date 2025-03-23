@@ -54,6 +54,7 @@ app.use((req, res, next) => {
 
 app.use("/", authRoutes); // set route for auth
 app.use("/", productRoutes); // set route for product listing and CRUD
+// app.use("/", productRoutes); // set route for product listing and CRUD
 
 app.get("/session", (req, res) => {
   console.log(req.session);
@@ -72,12 +73,21 @@ app.get("/", (req, res) => {
   });
 });
 
+// Admin panel
 app.get("/admin-panel", (req, res) => {
   if (!req.session.user || req.session.user.role !== "admin")
     return res.redirect("/");
   db.all("SELECT * FROM products", [], (err, products) => {
     if (err) return res.send("Error fetching products");
     res.render("admin-panel", { products });
+  });
+});
+
+// Products Page (List Products)
+app.get("/products", (req, res) => {
+  db.all("SELECT * FROM products", [], (err, products) => {
+    if (err) return res.send("Error fetching products");
+    res.render("products", { products });
   });
 });
 
