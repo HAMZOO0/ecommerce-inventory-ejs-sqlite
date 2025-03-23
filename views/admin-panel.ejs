@@ -176,7 +176,7 @@
                         <td><%= product.stock %></td>
                         <td class="action-buttons-table">
                             <a href="/edit-product/<%= product.id %>" class="btn">Edit</a>
-                            <form action="/delete-product/<%= product.id %>" method="POST" style="display: inline;">
+                            <form action="/delete-product/<%= product.id %>" method="get" style="display: inline;">
                                 <button type="submit" class="btn">Delete</button>
                             </form>
                         </td>

@@ -30,7 +30,7 @@ async function getPictureForProduct(productName) {
     // Fetch an image related to the product name
     const response = await unsplashClient.get("/photos/random", {
       params: {
-        query: productName, // Search query (e.g., "laptop", "phone", "shoes")
+        query: `${productName} product`, // Makes it more specific
         orientation: "squarish", // Ensures better display
       },
     });
@@ -87,7 +87,7 @@ router.get("/edit-product/:id", (req, res) => {
   );
 });
 
-// Handle Update Product - foam 
+// Handle Update Product - foam
 router.post("/edit-product/:id", (req, res) => {
   const { name, price, category, stock } = req.body;
   db.run(
