@@ -56,26 +56,23 @@ npm start
 
 ---
 ## ScreenShot 
-![screenshot-rocks (11)](https://github.com/user-attachments/assets/7ff7e9b0-d9ee-4c12-9aff-f2bfa75d7e98)
 
- ![screenshot-rocks (20)](https://github.com/user-attachments/assets/a24b6da9-c859-41f4-9f53-ac2c15cf33d6)
- 
+<img width="464" alt="image" src="https://github.com/user-attachments/assets/30678418-a226-4f49-acc7-02db9c43185c" />
 
-![screenshot-rocks (19)](https://github.com/user-attachments/assets/fb627399-51f9-4ccc-a090-dc80af9eb44c)
+<img width="488" alt="image" src="https://github.com/user-attachments/assets/c5460c06-66d0-4d0c-88c8-c45c5b308f50" />
 
-![screenshot-rocks (18)](https://github.com/user-attachments/assets/1828413b-e185-4ed1-9f3e-82248a988d26)
+<img width="494" alt="image" src="https://github.com/user-attachments/assets/c20bc98d-5b9f-4617-801a-dc033ca508f8" />
 
-![screenshot-rocks (17)](https://github.com/user-attachments/assets/56748472-4e1d-4864-be62-3d4cec2e24c2)
+<img width="491" alt="image" src="https://github.com/user-attachments/assets/73c36238-ca8f-4f4a-a7c2-a03668f745aa" />
 
-![screenshot-rocks (16)](https://github.com/user-attachments/assets/47c12782-2003-4ffe-8866-758408f64b51)
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/6ce70a57-8499-4126-b3e2-35dda6b7b6a1" />
 
-![screenshot-rocks (15)](https://github.com/user-attachments/assets/3f644878-a24e-4780-aa09-f6cbf6aac44c)
+<img width="506" alt="image" src="https://github.com/user-attachments/assets/8c733273-2e28-407b-9fb3-92014918c280" />
 
-![screenshot-rocks (14)](https://github.com/user-attachments/assets/2b889cd3-2852-4a5c-933c-8a2f534e732b)
+ <img width="478" alt="image" src="https://github.com/user-attachments/assets/d02e8947-5b0d-4c4d-8ecf-fdb869153a42" />
 
-![screenshot-rocks (13)](https://github.com/user-attachments/assets/dfc21b56-8683-43e3-9bfc-8b5bec6230db)
+<img width="493" alt="image" src="https://github.com/user-attachments/assets/ed925964-1456-406c-a9af-8cc2682594ce" />
 
+<img width="609" alt="image" src="https://github.com/user-attachments/assets/c2478f9f-102f-4e57-b824-0289c9debe70" />
 
-
-
- 
+<img width="572" alt="image" src="https://github.com/user-attachments/assets/8ee836ff-288f-4ca2-b5a1-58a487eb2d41" />
